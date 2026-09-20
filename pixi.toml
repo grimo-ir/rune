@@ -3,7 +3,7 @@ authors = ["nitg3n <nitg333n@pm.me>"]
 channels = ["https://conda.modular.com/max-nightly", "conda-forge"]
 name = "rune"
 platforms = ["linux-64"]
-version = "0.1.0"
+version = "0.1.1"
 
 [tasks]
 test-gpu = "mojo run -I . tests/vecadd.mojo && mojo run -I . tests/reduce.mojo && mojo run -I . tests/matmul.mojo && mojo run -I . tests/copy_bench.mojo"

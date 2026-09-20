@@ -2,8 +2,7 @@
 schema_version: 1
 
 context:
-  name: rune
-  version: 0.1.0
+  version: 0.1.1
 package:
   name: rune-gpu
   version: ${{ version }}
@@ -17,7 +16,7 @@ build:
   noarch: generic
   script:
     - mkdir -p $PREFIX/share/rune
-    - cp -r rune tests LICENSE NOTICE README.md $PREFIX/share/rune/
+    - cp -r rune tests docs LICENSE NOTICE README.md $PREFIX/share/rune/
 
 requirements:
   run:
@@ -28,7 +27,7 @@ tests:
   - script:
       - test -f $PREFIX/share/rune/rune/gpu/__init__.mojo
       - test -f $PREFIX/share/rune/tests/vecadd.mojo
-
+      - test -f $PREFIX/share/rune/docs/logo.png
 about:
   homepage: https://github.com/grimo-ir/rune
   license: Apache-2.0 WITH LLVM-exception
