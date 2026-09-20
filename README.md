@@ -34,6 +34,8 @@ Same kernels, same `DeviceContext`, same PTX — minus the inference stack you n
 ## ᛞ Quickstart
 
 ```bash
+git clone https://github.com/grimo-ir/rune.git
+cd rune
 pixi install
 pixi run test-gpu     # vecadd · reduce · matmul · copy+bench → 4× PASS
 ```
