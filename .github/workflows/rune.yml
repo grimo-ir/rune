@@ -42,6 +42,7 @@ jobs:
         with:
           artifact-name: rune-${{ github.ref_name }}
           recipe-path: recipe/recipe.yaml
+          build-args: --channel https://conda.modular.com/max-nightly --channel conda-forge
       - name: Publish to prefix.dev
         run: |
           for pkg in $(find output -type f -name "*.conda"); do
