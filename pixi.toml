@@ -1,0 +1,17 @@
+[workspace]
+authors = ["nitg3n <nitg333n@pm.me>"]
+channels = ["https://conda.modular.com/max-nightly", "conda-forge"]
+name = "rune"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+test-gpu = "mojo run -I . tests/vecadd.mojo && mojo run -I . tests/reduce.mojo && mojo run -I . tests/matmul.mojo && mojo run -I . tests/copy_bench.mojo"
+test-vecadd = "mojo run -I . tests/vecadd.mojo"
+test-reduce = "mojo run -I . tests/reduce.mojo"
+test-matmul = "mojo run -I . tests/matmul.mojo"
+test-copy-bench = "mojo run -I . tests/copy_bench.mojo"
+
+[dependencies]
+mojo = "==1.2.0.dev2026092005"
+max-core = "==26.7.0.dev2026092005"

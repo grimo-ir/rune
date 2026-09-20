@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+
+NOTICE — Rune / Upstream Terms
+==============================
+
+Rune's own source files (rune/, tests/) are licensed under the Apache
+License 2.0 with LLVM Exceptions; see LICENSE.
+
+Rune runs on Modular binaries (the `mojo` toolchain and `max-core`
+`.so`/`.mojoc` artifacts, pinned in pixi.toml). Those binaries are
+governed by the Modular MAX Community License
+(last modified August 18, 2026;
+https://www.modular.com/legal/community —
+conda-meta records LicenseRef-Modular-Proprietary for
+mojo, mojo-compiler, mojo-python, max-core, mblack).
+
+Required attribution for any distribution of Rune (source or object
+form), per Community License Section 1.1.4:
+
+"MAX is licensed by Modular Inc under the Modular MAX Community License
+and has been modified by nitg3n <nitg333n@pm.me>. Copyright Modular Inc
+IN NO EVENT SHALL MODULAR INC BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH USE OF MAX OR ANY DERIVATIVE WORK
+THEREOF."
+
+Preserve all Modular proprietary notices, labels, and marks.
+Do not represent Rune as a Modular product or endorsement.
+The full Community License terms accompany (or are displayed at
+download/installation of) each MAX release; the version in force for
+the pinned release governs that release.
+
+Separately Licensed Components (Community License Section 1.4).
+Verified 2026-09-20: every upstream Mojo source Rune imports carries
+an Apache-2.0-with-LLVM-Exceptions file header —
+max/mojo/max/gpu/{__init__,host/__init__,host/device_context,
+memory/memory,sync/sync,primitives/warp}, max/mojo/max/benchmark/bencher,
+Mojo/stdlib/std/ffi/__init__. Under Section 1.4 those license terms
+govern, and control over the Community terms in case of conflict.
+The Community attribution above still ships in this NOTICE as required.
