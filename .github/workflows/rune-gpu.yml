@@ -43,5 +43,5 @@ jobs:
       - name: Publish to prefix.dev
         run: |
           for pkg in $(find output -type f -name "*.conda"); do
-            rattler-build upload prefix --channel grimo-ir/rune "$pkg"
+            rattler-build upload prefix --channel nitg3n/rune "$pkg"
           done
