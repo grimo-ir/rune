@@ -33,6 +33,19 @@ Same kernels, same `DeviceContext`, same PTX — minus the inference stack you n
 
 ## ᛞ Quickstart
 
+Via channel (no clone):
+
+```bash
+pixi init my-gpu-app && cd my-gpu-app
+pixi project channel add https://conda.modular.com/max-nightly
+pixi project channel add conda-forge
+pixi project channel add https://prefix.dev/nitg3n/rune
+pixi add rune-gpu "mojo==1.2.0.dev2026092005" "max-core==26.7.0.dev2026092005"
+pixi run mojo run -I .pixi/envs/default/share/rune your_kernel.mojo
+```
+
+From source:
+
 ```bash
 git clone https://github.com/grimo-ir/rune.git
 cd rune
@@ -47,23 +60,25 @@ pixi run test-matmul
 pixi run test-copy-bench
 ```
 
-> `mojo run` needs `-I .` (repo root isn't auto-searched); all tasks embed it.
+> `mojo run` needs `-I .` for repo sources, or `-I .pixi/envs/default/share/rune`
+> for the channel install; contributors use the source path.
 
 ## ᚷ Verified GPUs
 
 `pixi run test-gpu` (vecadd · reduce · matmul · copy+bench) passes 4/4 on each.
 2026-09-21, pins `mojo ==1.2.0.dev2026092005` · `max-core ==26.7.0.dev2026092005`.
 
-| GPU | Arch | Target | Driver | Where | Result |
-| --- | ---- | ------ | ------ | ----- | ------ |
-| RTX 4070 SUPER | Ada | sm_89 | 616.92 | local (WSL2) | ✅ 4/4 |
-| L40S 48GB | Ada | sm_89 | 580.178 | Verda FIN-02 | ✅ 4/4 |
-| RTX A6000 48GB | Ampere | sm_86 | 595.71 | Verda FIN-01 | ✅ 4/4 |
-| A100 80GB SXM4 | Ampere | sm_80 | 595.71 | Verda FIN-02 | ✅ 4/4 |
-| RTX PRO 6000 Blackwell | Blackwell | sm_120 | 595.71 | Verda FIN-03 | ✅ 4/4 |
-| H100 80GB HBM3 | Hopper | sm_90 | 595.71 | Verda FIN-02 | ✅ 4/4 |
+| GPU | Arch | Target | Driver | Result |
+| --- | ---- | ------ | ------ | ------ |
+| RTX 4070 SUPER | Ada | sm_89 | 616.92 | ✅ 4/4 |
+| L40S 48GB | Ada | sm_89 | 580.178 | ✅ 4/4 |
+| RTX A6000 48GB | Ampere | sm_86 | 595.71 | ✅ 4/4 |
+| A100 80GB SXM4 | Ampere | sm_80 | 595.71 | ✅ 4/4 |
+| RTX PRO 6000 Blackwell | Blackwell | sm_120 | 595.71 | ✅ 4/4 |
+| H100 80GB HBM3 | Hopper | sm_90 | 595.71 | ✅ 4/4 |
 
 Coverage: Ampere → Ada → Hopper → Blackwell, four generations.
+Metal (Apple Silicon) not yet verified — no local hardware.
 
 ## ᛟ Layout
 
