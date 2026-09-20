@@ -18,6 +18,8 @@ jobs:
           pixi-version: latest
       # CPU-only runner: GPU tests need hardware, so verify the full
       # cross-compile matrix instead. Each target must at least build.
+      # Real GPU runs happen on Verda VMs (see README ## Verified GPUs);
+      # macOS runners have no Metal GPU access, so no macOS job.
       - name: Cross-compile all GPU targets
         run: |
           for t in sm_80 sm_86 sm_89 sm_90 sm_120; do
@@ -25,15 +27,3 @@ jobs:
               pixi run mojo build --target-accelerator=$t -I . tests/$f.mojo -o /tmp/$f-$t
             done
           done
-
-  test-macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: prefix-dev/setup-pixi@v0.8.8
-        with:
-          pixi-version: latest
-      - name: Install Metal toolchain
-        run: xcodebuild -downloadComponent MetalToolchain
-      - name: GPU tests on Apple Silicon
-        run: pixi run test-gpu
