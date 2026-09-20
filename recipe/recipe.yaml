@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+schema_version: 1
+
+context:
+  name: rune
+  version: 0.1.0
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/grimo-ir/rune.git
+  tag: v${{ version }}
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p $PREFIX/share/rune
+    - cp -r rune tests LICENSE NOTICE README.md $PREFIX/share/rune/
+
+requirements:
+  run:
+    - mojo >=1.2.0.dev2026092005,<2
+    - max-core >=26.7.0.dev2026092005,<27
+
+tests:
+  - script:
+      - test -f $PREFIX/share/rune/rune/gpu/__init__.mojo
+      - test -f $PREFIX/share/rune/tests/vecadd.mojo
+
+about:
+  homepage: https://github.com/grimo-ir/rune
+  license: Apache-2.0 WITH LLVM-exception
+  summary: Thin GPU execution layer for Mojo
+  description: |
+    One import surface (rune.gpu), zero inference stack.
+    Write kernels in Mojo, run them on NVIDIA GPUs.
+  repository: https://github.com/grimo-ir/rune
