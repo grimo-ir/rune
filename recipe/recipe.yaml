@@ -4,9 +4,8 @@ schema_version: 1
 context:
   name: rune
   version: 0.1.0
-
 package:
-  name: ${{ name }}
+  name: rune-gpu
   version: ${{ version }}
 
 source:
