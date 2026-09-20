@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+name: rune-gpu
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test-linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.8.8
+        with:
+          pixi-version: latest
+      # CPU-only runner: GPU tests need hardware, so verify the full
+      # cross-compile matrix instead. Each target must at least build.
+      - name: Cross-compile all GPU targets
+        run: |
+          for t in sm_80 sm_86 sm_89 sm_90 sm_120; do
+            for f in vecadd reduce matmul copy_bench; do
+              pixi run mojo build --target-accelerator=$t -I . tests/$f.mojo -o /tmp/$f-$t
+            done
+          done
+
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.8.8
+        with:
+          pixi-version: latest
+      - name: Install Metal toolchain
+        run: xcodebuild -downloadComponent MetalToolchain
+      - name: GPU tests on Apple Silicon
+        run: pixi run test-gpu
