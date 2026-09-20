@@ -4,6 +4,7 @@ name: rune-gpu
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -34,7 +35,7 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       id-token: write
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: prefix-dev/rattler-build-action@v0.2.34
