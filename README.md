@@ -1,3 +1,5 @@
+<img src="docs/logo.png" alt="Rune logo (raidho)" width="72" align="right">
+
 # ᚱ Rune
 
 **Thin GPU execution layer for Mojo.** One import surface (`rune.gpu`),
