@@ -39,9 +39,9 @@ Via channel (no clone):
 
 ```bash
 pixi init my-gpu-app && cd my-gpu-app
-pixi project channel add https://conda.modular.com/max-nightly
 pixi project channel add conda-forge
 pixi project channel add https://prefix.dev/nitg3n/rune
+pixi project channel add https://conda.modular.com/max-nightly
 pixi add rune-gpu "mojo==1.2.0.dev2026092005" "max-core==26.7.0.dev2026092005"
 pixi run mojo run -I .pixi/envs/default/share/rune your_kernel.mojo
 ```
